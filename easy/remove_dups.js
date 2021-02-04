@@ -4,20 +4,14 @@ remove duplicates from the list
 */
 
 function removeDups(head) {
-    let node = head;
-    debugger
-    while (!!head.next) {
-        if (head.next.value === head.value) {
-            let getAllDups = true;
-            while (getAllDups) {
-                if (head.next.value === head.value) {
-                    head.next = head.next.next;
-                } else {
-                    getAllDups = false;
-                }
-            }
-        } else {
-            head = head.next;
+    let currentNode = head;
+    while (!!currentNode) {
+        let nextDistinctNode = currentNode.next;
+        while (!!nextDistinctNode && nextDistinctNode.value === currentNode.value) {
+            nextDistinctNode = nextDistinctNode.next;
         }
+        currentNode.next = nextDistinctNode; // reassign pointers once distinct is found
+        currentNode = nextDistinctNode // reassign for iteration
     }
+    return head
 }
