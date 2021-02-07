@@ -1,7 +1,7 @@
 /* 
 return a sorted array of all the node values in the BST
 */
-class BST { 
+class TreeNode { 
     constructor(value) {
         this.value = value;
         this.left = null;
@@ -9,20 +9,22 @@ class BST {
     }
 }
 
-function inOrderTraverse(tree, array) {
-    const result = [];
-    function traverse(node) {
-        if (!!node.left) traverse(node.left);
-        if (!!node) result.push(node.value);
-        if (!!node.right) traverse(node.right);
+function inOrderTraverse(node, result=[]) {
+    if (!!node) {
+        inOrderTraverse(node.left, result);
+        result.push(node.value);
+        inOrderTraverse(node.right, result);
     }
-    traverse(tree)
     return result
 }
 
-let root = new BST(5)
-root.left = new BST(2);
-root.right = new BST(7)
+let root = new TreeNode(5)
+root.left = new TreeNode(2);
+root.right = new TreeNode(7);
+root.left.left = new TreeNode(1);
+root.left.right = new TreeNode(4);
+root.right.left = new TreeNode(6);
+root.right.right = new TreeNode(10);
 
-console.log(inOrderTraverse(root)) // => [2, 5, 7]
+console.log(inOrderTraverse(root)) // => [1, 2, 4, 5, 6, 7, 10]
 
