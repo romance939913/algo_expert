@@ -35,14 +35,29 @@ class DoublyLinkedList {
     }
 
     removeNodesWithValue(value) {
-        // Write your code here.
+        let node = this.head;
+        while (node !== null) {
+            const nodeToRemove = node;
+            node = node.next;
+            if (nodeToRemove.value === value) this.remove(nodeToRemove);
+        }
     }
 
     remove(node) {
-        // Write your code here.
+        if (node === this.head) this.head = this.head.next;
+        if (node === this.tail) this.tail = this.tail.prev;
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
+        node.prev = null;
+        node.next = null;
     }
 
     containsNodeWithValue(value) {
-        // Write your code here.
+        let node = this.head;
+        while (node !== null) {
+            if (node.value === value) return true
+            node = node.next;
+        }   
+        return false;
     }
 }
