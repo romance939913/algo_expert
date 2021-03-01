@@ -7,6 +7,7 @@ class MinMaxStack {
         this.min = [];
         this.max = [];
     }
+    
     peek() {
         // Write your code here.
     }
@@ -14,7 +15,6 @@ class MinMaxStack {
     pop() {
         // Write your code here.
     }
-
     push(number) {
         // Write your code here.
     }
